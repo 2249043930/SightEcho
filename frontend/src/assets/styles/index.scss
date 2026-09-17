@@ -1,0 +1,218 @@
+// =====================================================================
+// 全局样式入口 index.scss
+// 加载顺序：variables -> reset -> a11y -> 业务全局
+// =====================================================================
+@use './variables.scss' as *;
+@use './reset.scss';
+@use './a11y.scss';
+
+// ---------- 通用工具类 ----------
+.neumorphic-card {
+  background: $bg-main;
+  border: 0;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-md;
+  padding: 24px;
+  transition: $transition-base;
+
+  @include mobile {
+    padding: 16px;
+  }
+}
+
+.neumorphic-raised {
+  background: $bg-main;
+  border: 0;
+  border-radius: $radius-md;
+  box-shadow: $shadow-md;
+  transition: $transition-base;
+}
+
+.neumorphic-inset {
+  background: $bg-main;
+  border: 0;
+  border-radius: $radius-md;
+  box-shadow: $shadow-inset-md;
+  transition: $transition-base;
+}
+
+.neumorphic-button {
+  @include neu-button;
+}
+
+.text-main { color: $text-main; }
+.text-secondary { color: $text-secondary; }
+.text-muted { color: $text-muted; }
+.bg-main { background-color: $bg-main; }
+.bg-elevated { background-color: $bg-elevated; }
+
+// =====================================================================
+// Element Plus 深度覆盖（Neumorphism）
+// =====================================================================
+
+// 按钮
+.el-button {
+  background: $bg-main !important;
+  border: 0 !important;
+  border-radius: $radius-md !important;
+  color: $text-main !important;
+  font-weight: 600;
+  box-shadow: $shadow-md !important;
+  transition: $transition-base !important;
+  min-height: 48px;
+
+  &:hover {
+    box-shadow: $shadow-sm !important;
+    color: $text-main !important;
+  }
+  &:active,
+  &:focus-visible {
+    box-shadow: $shadow-inset-sm !important;
+    outline: 2px solid $accent !important;
+    outline-offset: 2px !important;
+    color: $text-main !important;
+  }
+  &.is-disabled,
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.el-button--primary {
+  background: $accent !important;
+  color: #fff !important;
+  box-shadow: $shadow-md !important;
+  &:hover { color: #fff !important; }
+  &:active, &:focus-visible {
+    color: #fff !important;
+    box-shadow: inset 4px 4px 8px $accent-active, inset -4px -4px 8px lighten($accent, 12%) !important;
+    outline: 2px solid $text-main !important;
+  }
+}
+
+.el-button--success {
+  background: $color-success !important;
+  color: #fff !important;
+}
+.el-button--warning {
+  background: $color-warning !important;
+  color: #fff !important;
+}
+.el-button--danger {
+  background: $color-danger !important;
+  color: #fff !important;
+}
+
+// 卡片
+.el-card {
+  background: $bg-main !important;
+  border: 0 !important;
+  border-radius: $radius-lg !important;
+  box-shadow: $shadow-md-lg !important;
+}
+
+// 输入框
+.el-input__wrapper {
+  background: $bg-main !important;
+  border-radius: $radius-md !important;
+  box-shadow: $shadow-inset-md !important;
+  padding: 4px 12px !important;
+  transition: $transition-base !important;
+
+  &.is-focus {
+    box-shadow: $shadow-inset-lg !important;
+  }
+}
+.el-input__inner {
+  color: $text-main !important;
+  &::placeholder { color: $text-muted !important; }
+}
+.el-textarea__inner {
+  background: $bg-main !important;
+  color: $text-main !important;
+  box-shadow: $shadow-inset-md !important;
+  border: 0 !important;
+  border-radius: $radius-md !important;
+  &::placeholder { color: $text-muted !important; }
+  &:focus {
+    box-shadow: $shadow-inset-lg !important;
+    outline: 2px solid $accent;
+  }
+}
+
+// 开关
+.el-switch__core {
+  background: $bg-main !important;
+  border: 0 !important;
+  box-shadow: inset 2px 2px 4px $shadow-dark, inset -2px -2px 4px $shadow-light !important;
+}
+
+// 对话框 / 抽屉
+.el-dialog,
+.el-drawer {
+  background: $bg-main !important;
+  border-radius: $radius-xl !important;
+  box-shadow: $shadow-lg !important;
+  border: 0 !important;
+}
+.el-drawer__header { color: $text-main !important; margin-bottom: 16px; }
+.el-drawer__body { padding: 0 20px 20px; }
+
+// 下拉菜单
+.el-select__wrapper {
+  background: $bg-main !important;
+  box-shadow: $shadow-inset-md !important;
+  border-radius: $radius-md !important;
+  &.is-focused {
+    box-shadow: $shadow-inset-lg !important;
+  }
+}
+.el-select-dropdown {
+  background: $bg-main !important;
+  border: 0 !important;
+  box-shadow: $shadow-md !important;
+  border-radius: $radius-md !important;
+}
+
+// 表格
+.el-table {
+  background: $bg-main !important;
+  color: $text-main !important;
+  th.el-table__cell {
+    background: $bg-elevated !important;
+    color: $text-main !important;
+  }
+  tr {
+    background: $bg-main !important;
+  }
+}
+
+// 消息提示
+.el-message {
+  background: $bg-main !important;
+  border: 0 !important;
+  box-shadow: $shadow-md !important;
+  border-radius: $radius-md !important;
+  color: $text-main !important;
+}
+
+// 菜单
+.el-menu {
+  background: transparent !important;
+  border: 0 !important;
+}
+.el-menu-item {
+  color: $text-main !important;
+  border-radius: $radius-md !important;
+  margin: 4px 0;
+  &:hover {
+    background: $bg-elevated !important;
+    color: $text-main !important;
+  }
+  &.is-active {
+    background: $accent !important;
+    color: #fff !important;
+    box-shadow: $shadow-sm;
+  }
+}

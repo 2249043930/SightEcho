@@ -1,0 +1,138 @@
+// =====================================================================
+// SightEcho 全局主题变量 + 响应式断点（Neumorphism / 新拟物派）
+// =====================================================================
+
+// ---------- 颜色 Token ----------
+$bg-main: #e0e5ec; // 页面、卡片、按钮、输入框同色表面
+$bg-elevated: #f0f0f3; // 抬升表面、二级容器
+$shadow-dark: #b8bcc2; // 右下投影
+$shadow-light: #ffffff; // 左上高光
+
+$accent: #6d5dfc; // 强调色（CTA / 主操作 / 焦点环）
+$accent-hover: #5a4be0;
+$accent-active: #4a3fc8;
+
+$text-main: #2c2c34; // 主文字（WCAG AAA ≥ 7:1）
+$text-secondary: #5b6470; // 次要文字（WCAG AA ≥ 4.5:1）
+$text-muted: #8a93a0; // 弱化文字 / placeholder
+
+$color-success: #4ecdc4;
+$color-warning: #ffb454;
+$color-danger: #e36b6b;
+
+// 高对比度模式（prefers-contrast: more）
+$bg-high-contrast: #ffffff;
+$text-high-contrast: #000000;
+$accent-high-contrast: #0040ff;
+
+// ---------- 间距体系（4 / 8 / 12 / 16 / 24 / 32 / 48 / 64） ----------
+// 使用列表+ nth() 替代动态变量查找，避免 SCSS @use 模块兼容问题
+$space-list: 4px, 8px, 12px, 16px, 24px, 32px, 48px, 64px;
+@function space($i) {
+  @return nth($space-list, $i);
+}
+
+// ---------- 圆角 ----------
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+$radius-xl: 20px;
+$radius-2xl: 24px;
+$radius-full: 9999px;
+
+// ---------- 字体 ----------
+$font-family-base: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei',
+  'Helvetica Neue', Arial, sans-serif;
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-base: 16px;
+$font-size-md: 18px;
+$font-size-lg: 20px;
+$font-size-xl: 24px;
+$font-size-2xl: 28px;
+$font-size-3xl: 32px;
+
+$line-height-tight: 1.25;
+$line-height-base: 1.5;
+$line-height-relaxed: 1.7;
+
+// ---------- 阴影系统（Neumorphism） ----------
+// 小（移动端默认）
+$shadow-sm: 4px 4px 8px $shadow-dark, -4px -4px 8px $shadow-light;
+// 中（笔记本端默认）
+$shadow-md: 6px 6px 12px $shadow-dark, -6px -6px 12px $shadow-light;
+$shadow-md-lg: 8px 8px 16px $shadow-dark, -8px -8px 16px $shadow-light;
+// 大（卡片/容器）
+$shadow-lg: 12px 12px 24px $shadow-dark, -12px -12px 24px $shadow-light;
+// 凹陷（输入框默认 / 按钮 active）
+$shadow-inset-sm: inset 4px 4px 8px $shadow-dark, inset -4px -4px 8px $shadow-light;
+$shadow-inset-md: inset 6px 6px 12px $shadow-dark, inset -6px -6px 12px $shadow-light;
+$shadow-inset-lg: inset 2px 2px 4px $shadow-dark, inset -2px -2px 4px $shadow-light;
+
+// ---------- 过渡 ----------
+$transition-base: all 300ms ease-in-out;
+$transition-fast: all 150ms ease-in-out;
+
+// ---------- 断点 ----------
+$breakpoint-xs: 480px;
+$breakpoint-sm: 768px;
+$breakpoint-md: 992px;
+$breakpoint-lg: 1200px;
+$breakpoint-xl: 1920px;
+$breakpoint-xxl: 2560px;
+
+// ---------- mixin：媒体查询 ----------
+@mixin xs {
+  @media (max-width: #{$breakpoint-xs - 1}) { @content; }
+}
+@mixin sm {
+  @media (min-width: $breakpoint-xs) and (max-width: #{$breakpoint-sm - 1}) { @content; }
+}
+@mixin mobile {
+  @media (max-width: #{$breakpoint-sm - 1}) { @content; }
+}
+@mixin tablet {
+  @media (min-width: $breakpoint-sm) and (max-width: #{$breakpoint-md - 1}) { @content; }
+}
+@mixin laptop {
+  @media (min-width: $breakpoint-md) and (max-width: #{$breakpoint-xl - 1}) { @content; }
+}
+@mixin desktop {
+  @media (min-width: $breakpoint-xl) { @content; }
+}
+
+// ---------- mixin：Neumorphism 快捷类 ----------
+@mixin neu-raised($shadow: $shadow-md) {
+  background: $bg-main;
+  box-shadow: $shadow;
+}
+@mixin neu-inset($shadow: $shadow-inset-md) {
+  background: $bg-main;
+  box-shadow: $shadow;
+}
+@mixin neu-button {
+  background: $bg-main;
+  border: 0;
+  border-radius: $radius-md;
+  color: $text-main;
+  font-weight: 600;
+  min-height: 48px;
+  padding: 12px 24px;
+  box-shadow: $shadow-md;
+  transition: $transition-base;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: $shadow-sm;
+  }
+  &:active,
+  &:focus-visible {
+    box-shadow: $shadow-inset-sm;
+    outline: 2px solid $accent;
+    outline-offset: 2px;
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}

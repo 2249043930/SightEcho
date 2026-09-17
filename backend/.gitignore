@@ -1,0 +1,28 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+.env
+.env.*
+!.env.example
+*.db
+*.sqlite
+*.pid
+
+# ===== 运行时产物 =====
+logs/
+static/
+tmp/
+*.log
+*.pid
+
+# ===== 文档（不进仓库） =====
+*-prompt.md
+README-prompt.md

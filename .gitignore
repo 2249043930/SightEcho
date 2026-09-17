@@ -1,0 +1,55 @@
+# ===== 跨项目通用 =====
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.swp
+
+# ===== Prompt / 内部开发文档（不进仓库） =====
+/backend-prompt.md
+/frontend-prompt.md
+/backend/**/*-prompt.md
+/frontend/**/*-prompt.md
+
+# ===== Backend (Python) =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+backend/.venv/
+backend/venv/
+backend/env/
+backend/.env
+backend/.env.*
+!.env.example
+backend/logs/
+backend/static/
+backend/*.db
+backend/*.sqlite
+backend/*.pid
+backend/dist/
+backend/build/
+
+# ===== Frontend (Node) =====
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+frontend/*.local
+frontend/.env
+frontend/.env.local
+frontend/.env.*.local
+frontend/coverage/
+frontend/.vite/
+
+# ===== logs / 杂项 =====
+/logs/
+
+# ===== IDE =====
+*.iml
+.idea/workspace.xml

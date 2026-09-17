@@ -1,0 +1,90 @@
+<!--
+  SightEcho 验证码邮件模板（Neumorphism 风格）
+  与前端 src/assets/styles/variables.scss 保持完全一致
+  维护说明：CSS 变量值与 variables.scss 一一对应，改样式请同步两边
+  使用：
+    1) 直接 fetch 文件内容
+    2) 替换 {{CODE}} / {{EXPIRE_MIN}} / {{YEAR}} 占位符
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【SightEcho 昭视智伴】邮箱验证码</title>
+</head>
+<body style="margin: 0; padding: 0; background: #e0e5ec; font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif; color: #2c2c34;">
+
+<!-- 外层容器：浅灰背景 -->
+<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background: #e0e5ec; padding: 40px 16px;">
+  <tr>
+    <td align="center">
+
+      <!-- 主卡片：凸起阴影 #b8bcc2 + #ffffff -->
+      <table role="presentation" width="520" cellspacing="0" cellpadding="0" border="0" style="max-width: 520px; background: #e0e5ec; border-radius: 20px; box-shadow: 8px 8px 16px #b8bcc2, -8px -8px 16px #ffffff;">
+        <tr>
+          <td style="padding: 40px 32px;">
+
+            <!-- 顶部 Logo + 标题（紫色强调色） -->
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td align="center" style="padding-bottom: 20px;">
+                  <!-- Logo 占位（用渐变圆点代替，避免邮件客户端拦截外链图片） -->
+                  <div style="width: 56px; height: 56px; margin: 0 auto 16px; background: linear-gradient(135deg, #6d5dfc 0%, #4ecdc4 100%); border-radius: 50%; box-shadow: 4px 4px 8px #b8bcc2, -4px -4px 8px #ffffff; line-height: 56px; color: #ffffff; font-size: 24px; font-weight: 700; text-align: center;">视</div>
+                  <h1 style="margin: 0; font-size: 24px; font-weight: 700; color: #2c2c34; letter-spacing: 1px;">SightEcho 昭视智伴</h1>
+                  <p style="margin: 6px 0 0 0; font-size: 14px; color: #5b6470;">视障场景智能感知系统</p>
+                </td>
+              </tr>
+            </table>
+
+            <!-- 分隔线（用阴影模拟） -->
+            <div style="height: 1px; background: linear-gradient(90deg, transparent 0%, #b8bcc2 50%, transparent 100%); margin: 24px 0;"></div>
+
+            <!-- 主文案 -->
+            <p style="margin: 0 0 16px 0; font-size: 16px; line-height: 1.7; color: #2c2c34;">您好，</p>
+            <p style="margin: 0 0 24px 0; font-size: 16px; line-height: 1.7; color: #5b6470;">您正在登录 SightEcho 昭视智伴，请使用以下验证码完成验证：</p>
+
+            <!-- 验证码卡片：凹陷阴影（白底+双内阴影） -->
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background: #ffffff; border-radius: 16px; box-shadow: inset 6px 6px 12px #b8bcc2, inset -6px -6px 12px #ffffff; margin: 24px 0;">
+              <tr>
+                <td align="center" style="padding: 32px 16px;">
+                  <div style="font-size: 38px; font-weight: 700; letter-spacing: 12px; color: #6d5dfc; font-family: 'SF Mono', 'Monaco', 'Consolas', 'Courier New', monospace; line-height: 1.2;">{{CODE}}</div>
+                  <div style="margin-top: 12px; font-size: 12px; color: #8a93a0; letter-spacing: 1px;">{{EXPIRE_MIN}} 分钟内有效</div>
+                </td>
+              </tr>
+            </table>
+
+            <!-- 温馨提醒 -->
+            <p style="margin: 24px 0 8px 0; font-size: 14px; line-height: 1.7; color: #5b6470;">⏱ 验证码将在 <strong style="color: #ffb454;">{{EXPIRE_MIN}} 分钟</strong>后失效，请尽快使用</p>
+            <p style="margin: 0 0 8px 0; font-size: 14px; line-height: 1.7; color: #5b6470;">🔒 如非本人操作，请忽略本邮件，您的账户仍然安全</p>
+            <p style="margin: 0; font-size: 14px; line-height: 1.7; color: #5b6470;">💡 建议使用 <strong style="color: #6d5dfc;">Chrome / Edge</strong> 浏览器获得最佳体验</p>
+
+            <!-- 分割 -->
+            <div style="height: 1px; background: linear-gradient(90deg, transparent 0%, #b8bcc2 50%, transparent 100%); margin: 32px 0 16px;"></div>
+
+            <!-- 底部签名 -->
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td align="center">
+                  <p style="margin: 0 0 4px 0; font-size: 13px; color: #8a93a0;">© {{YEAR}} SightEcho 昭视智伴 · 让视障人士看见世界</p>
+                  <p style="margin: 0; font-size: 12px; color: #8a93a0;">这是一封自动发送的系统邮件，请勿直接回复</p>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+
+      <!-- 底部说明 -->
+      <p style="margin: 20px 0 0 0; font-size: 12px; color: #8a93a0; text-align: center;">
+        本邮件由 SightEcho 系统自动发出，请勿回复。<br>
+        如需帮助，请访问帮助中心或联系客服。
+      </p>
+
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

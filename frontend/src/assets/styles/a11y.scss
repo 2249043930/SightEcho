@@ -1,0 +1,83 @@
+// =====================================================================
+// 无障碍样式（a11y.scss）
+// =====================================================================
+@use './variables.scss' as *;
+
+// sr-only：仅对读屏软件可见，视觉隐藏
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// 跳过链接（默认隐藏，Tab 聚焦时显示）
+.skip-link {
+  @extend .sr-only;
+
+  &:focus,
+  &:focus-visible {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    width: auto;
+    height: auto;
+    clip: auto;
+    z-index: 9999;
+    padding: 12px 20px;
+    background: $accent;
+    color: #fff;
+    border-radius: $radius-md;
+    box-shadow: $shadow-md;
+    text-decoration: none;
+    font-weight: 600;
+  }
+}
+
+// 全局焦点可见
+:focus-visible {
+  outline: 2px solid $accent !important;
+  outline-offset: 2px !important;
+}
+
+// 实时播报区
+.a11y-announcer {
+  @extend .sr-only;
+}
+
+// 高对比度模式
+@media (prefers-contrast: more) {
+  :root {
+    --bg-main: #{$bg-high-contrast};
+    --text-main: #{$text-high-contrast};
+    --accent: #{$accent-high-contrast};
+  }
+  .neumorphic-card,
+  .el-card {
+    background: $bg-high-contrast !important;
+    color: $text-high-contrast !important;
+    box-shadow: 0 0 0 2px $text-high-contrast, 4px 4px 8px $text-high-contrast !important;
+  }
+  .el-button {
+    background: $bg-high-contrast !important;
+    color: $text-high-contrast !important;
+    box-shadow: 0 0 0 2px $text-high-contrast !important;
+  }
+}
+
+// 减弱动效
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
